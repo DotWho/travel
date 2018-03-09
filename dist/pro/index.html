@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta http-equiv=Cache-Control content=no-siteapp><meta name=viewport content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"><meta name=apple-mobile-web-app-capable content=yes><meta name=format-detection content="telephone=no, email=no"><meta name=wap-font-scale content=no><meta name=apple-mobile-web-app-status-bar-style content=black-translucent><title></title><style>.nloging {
+            position: relative;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            text-align: center;
+            background-color: #fff;
+        }
+        .nloging::before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            width: 55px;
+            height: 55px;
+            content: "";
+            border: 5px solid #19b28c;
+            border-top-color: transparent;
+            border-radius: 100%;
+            animation: doload 1000ms infinite linear;
+        }
+        @keyframes doload {
+            from {
+                transform: rotate3d(0 ,0, 1, 0deg);
+            }
+            to {
+                transform: rotate3d(0 ,0, 1, 360deg);
+            }
+        }</style><script>+(function(designWidth, maxWidth) {
+            var doc = document,
+                win = window,
+                docEl = doc.documentElement,
+                remStyle = document.createElement("style"),
+                tid;
+
+            function refreshRem() {
+                var width = docEl.getBoundingClientRect().width;
+                maxWidth = maxWidth || 540;
+                width > maxWidth && (width = maxWidth);
+                var rem = width * 100 / designWidth;
+                remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
+            }
+
+            if (docEl.firstElementChild) {
+                docEl.firstElementChild.appendChild(remStyle);
+            } else {
+                var wrap = doc.createElement("div");
+                wrap.appendChild(remStyle);
+                doc.write(wrap.innerHTML);
+                wrap = null;
+            }
+            //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+            refreshRem();
+
+            win.addEventListener("resize", function() {
+                clearTimeout(tid); //防止执行两次
+                tid = setTimeout(refreshRem, 300);
+            }, false);
+
+            win.addEventListener("pageshow", function(e) {
+                if (e.persisted) { // 浏览器后退的时候重新计算
+                    clearTimeout(tid);
+                    tid = setTimeout(refreshRem, 300);
+                }
+            }, false);
+
+            if (doc.readyState === "complete") {
+                doc.body.style.fontSize = "16px";
+            } else {
+                doc.addEventListener("DOMContentLoaded", function(e) {
+                    doc.body.style.fontSize = "16px";
+                }, false);
+            }
+        })(750, 750);</script><link href=/static/css/app.253ef1f57fca098d35805fe0853f98f9.css rel=stylesheet></head><body><div id=app></div><script>// loading
+        const _div = document.createElement('div')
+        const body = document.body
+        _div.classList.add('nloging')
+        body.appendChild(_div)</script><script type=text/javascript src=/static/js/manifest.c23758616a53f0387210.js></script><script type=text/javascript src=/static/js/vendor.0da3f8243a0efb157e28.js></script><script type=text/javascript src=/static/js/app.cf66a616bf1abda4c453.js></script></body></html>

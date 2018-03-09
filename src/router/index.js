@@ -24,7 +24,7 @@ const router = new Router({
     mode: 'history',
     //scrollBehavior,
     routes: [
-        Index,
+        ...Index,
         ...Errors
     ]
 })

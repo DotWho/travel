@@ -6,12 +6,16 @@
         @pullingUp="onPullingUp">
         <van-search placeholder="请输入商品名称" slot="nav" />
         <!-- <transition name="slide"> -->
-            <ul class="my" slot="main" v-if="active === 0">
-                <li v-for="i in items" :key="i.key" :class="i">{{i}}</li>
+        <div slot="main">
+            <van-button type="default" @click="toTest">默认按钮</van-button>
+            <van-button type="default" @click="toTest1">默认按钮1</van-button>
+            <ul class="my" v-if="active === 0">
+                <li v-for="i in items" :key="i.key">{{i}}</li>
             </ul>
-            <ul class="my" slot="main" v-if="active === 1">
-                <li v-for="k in items1" :key="k.key" :class="k">{{k}}</li>
+            <ul class="my" v-if="active === 1">
+                <li v-for="k in items1" :key="k.key">{{k}}</li>
             </ul>
+        </div>
         <!-- </transition> -->
         <van-tabbar slot="footer" v-model="active">
             <van-tabbar-item icon="shop">标签</van-tabbar-item>
@@ -34,6 +38,12 @@ export default {
         }
     },
     methods: {
+        toTest() {
+            this.$router.push({ path: '/test' })
+        },
+        toTest1() {
+            this.$router.push({ path: '/test1' })
+        },
         onPullingDown() {
             // 模拟更新数据 - 下拉刷新
             setTimeout(() => {
